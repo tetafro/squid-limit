@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS logdb;
+CREATE TABLE logdb (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    date TIMESTAMP NOT NULL,
+    ip CHAR(50) NOT NULL,
+    size INT NOT NULL,
+    link VARCHAR(1000),
+    login VARCHAR(100)
+) TYPE=innodb;

@@ -1,0 +1,33 @@
+/var/log/squid3/access.log
+{
+    # Заводить новый файл каждый день
+    daily
+    # Сжимать старые файлы
+    compress
+    # Сжимать файл не сразу, а только на следующий день
+    delaycompress
+    # Число хранимых экземпляров
+    rotate 1
+    # Не выдавать ошибок, если какой-то из файлов пропущен
+    missingok
+    # Непонятная херня
+    nocreate
+    sharedscripts
+    postrotate
+    test ! -e /var/run/squid3.pid || /usr/sbin/squid3 -k rotate
+    endscript
+}
+
+/var/log/squid3/cache.log
+{
+    # Заводить новый файл каждый месяц
+    monthly
+    # Сжимать старые файлы
+    compress
+    # Число хранимых экземпляров
+    rotate 1
+    # Непонятная херня
+    postrotate
+    test ! -e /var/run/squid3.pid || /usr/sbin/squid3 -k rotate
+    endscript
+}
